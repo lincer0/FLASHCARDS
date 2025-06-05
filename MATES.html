@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guía de Estudio - Flashcards de Matemáticas</title>
+<style>
+  :root {
+    --color-bg: #ebf4fd;
+    --color-card-front-bg: #a8d8e8; /* Azul clarito para frente */
+    --color-card-back-bg: #007acc; /* Azul oscuro para reverso */
+    --color-text-front: #172c66;
+    --color-text-back: #ffffff;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --card-size: 240px;
+    --border-radius: 16px;
+    --transition-speed: 0.6s;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+    font-family: var(--font-family);
+    color: var(--color-text-front);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    background: var(--color-card-back-bg);
+    color: var(--color-text-back);
+    padding: 1.75rem 1rem;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(104, 97, 199, 0.12);
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2rem;
+    user-select: none;
+  }
+  main {
+    flex: 1;
+    padding: 1rem;
+    max-width: 1080px;
+    margin: 0 auto 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-size), 1fr));
+    gap: 1.4rem 1.4rem;
+    justify-content: center;
+    align-items: center; /* para centrar verticalmente tarjetas */
+  }
+
+  /* Contenedor flip */
+  .flashcard {
+    perspective: 1000px;
+    width: var(--card-size);
+    height: var(--card-size);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    flex-shrink: 0;
+  }
+
+  /* El interior que gira */
+  .flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform var(--transition-speed);
+    transform-style: preserve-3d;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px #1c25701a;
+  }
+
+  /* Efecto flip al activar clase */
+  .flashcard.active .flashcard-inner {
+    transform: rotateY(180deg);
+    box-shadow: 0 8px 20px #1c25701a;
+  }
+
+  /* Caras frontales y traseras */
+  .flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+    backface-visibility: hidden;
+    padding: 1.4rem 1rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    overflow-y: auto;
+  }
+
+  /* Frente */
+  .flashcard-front {
+    background-color: var(--color-card-front-bg);
+    color: var(--color-text-front);
+    font-weight: 600;
+    font-size: 1.1rem;
+    z-index: 2;
+  }
+  /* Atrás */
+  .flashcard-back {
+    background-color: var(--color-card-back-bg);
+    color: var(--color-text-back);
+    font-weight: 500;
+    font-size: 1rem;
+    transform: rotateY(180deg);
+    line-height: 1.3;
+    z-index: 1;
+  }
+
+  /* Pequeño espaciamiento entre explicación y fórmula para claridad */
+  .formula {
+    margin-top: 10px;
+    font-size: 1.3rem;
+  }
+
+  /* Footer simple */
+  footer {
+    text-align: center;
+    color: #666;
+    padding: 1.2rem 1rem;
+    font-size: 0.85rem;
+    user-select: none;
+    border-top: 1px solid #a8d8e8;
+  }
+
+  /* Ajustes responsivos */
+  @media (max-width: 360px) {
+    :root {
+      --card-size: 200px;
+    }
+  }
+</style>
+<!-- MathJax CDN para renderizar fórmulas LaTeX -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<header>
+  <h1>Guía de Estudio - Flashcards de Matemáticas</h1>
+</header>
+<main>
+  <!-- Flashcards del primer código -->
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 1">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué es el razonamiento cuantitativo?</div>
+      <div class="flashcard-back">Es la capacidad de utilizar números y operaciones matemáticas para resolver problemas y tomar decisiones.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 2">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué abarca la aritmética, álgebra y geometría?</div>
+      <div class="flashcard-back">Son ramas de las matemáticas que estudian números, operaciones, estructuras algebraicas y propiedades del espacio.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 3">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué son los números primos y compuestos?</div>
+      <div class="flashcard-back">Los primos son divisibles solo por 1 y sí mismos, mientras que los compuestos tienen más de dos divisores.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 4">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué son razones, proporciones y porcentajes?</div>
+      <div class="flashcard-back">Son formas de comparar cantidades: razones comparan dos números, proporciones son ecuaciones de razones, y porcentajes son fracciones de 100.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 5">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué es la jerarquía de operaciones?</div>
+      <div class="flashcard-back">Es el orden en que se deben realizar las operaciones matemáticas: paréntesis, exponentes, multiplicación y división, suma y resta.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 6">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué son las operaciones algebraicas?</div>
+      <div class="flashcard-back">Son manipulaciones de expresiones algebraicas que incluyen suma, resta, multiplicación y división de variables y constantes.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 7">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué es la solución de desigualdades?</div>
+      <div class="flashcard-back">Es el proceso de encontrar los valores que satisfacen una desigualdad, representando intervalos en la recta numérica.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 8">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué es el cálculo de eventos?</div>
+      <div class="flashcard-back">Es el estudio de cómo se producen eventos y sus probabilidades, utilizando herramientas matemáticas para analizarlos.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 9">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué son las funciones?</div>
+      <div class="flashcard-back">Son relaciones matemáticas que asignan a cada elemento de un conjunto un único elemento de otro conjunto, incluyendo transformaciones y límites.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 10">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué es la combinatoria?</div>
+      <div class="flashcard-back">Es el estudio de conteos y arreglos de elementos en conjuntos, incluyendo permutaciones y combinaciones.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 11">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué son los elementos de probabilidad?</div>
+      <div class="flashcard-back">Incluyen conceptos como probabilidad clásica, condicional y el teorema de Bayes para calcular la probabilidad de eventos.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 12">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Cómo se toman decisiones en procesos cotidianos?</div>
+      <div class="flashcard-back">Utilizando razonamiento lógico y cuantitativo para evaluar opciones y consecuencias antes de elegir una acción.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 13">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué son los ángulos y áreas?</div>
+      <div class="flashcard-back">Los ángulos son medidas de rotación, y las áreas son medidas de superficie, calculadas usando razones trigonométricas.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 14">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué es la geometría analítica?</div>
+      <div class="flashcard-back">Es el estudio de la geometría utilizando un sistema de coordenadas, incluyendo la distancia entre puntos y ecuaciones de la recta.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 15">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Qué es el tratamiento de datos?</div>
+      <div class="flashcard-back">Es el análisis y presentación de datos utilizando medidas estadísticas como media, mediana y moda.</div>
+    </div>
+  </div>
+
+  <!-- Flashcards con fórmulas y explicaciones, usando MathJax -->
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 16">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Teorema de Pitágoras</div>
+      <div class="flashcard-back">
+        La relación en un triángulo rectángulo<br>
+        <span class="formula">\( a^2 + b^2 = c^2 \)</span><br>
+        donde <em>c</em> es la hipotenusa.
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 17">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Área del círculo</div>
+      <div class="flashcard-back">
+        Cálculo del área de un círculo<br>
+        <span class="formula">\( A = \pi r^2 \)</span><br>
+        donde <em>r</em> es el radio.
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 18">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Volumen del cubo</div>
+      <div class="flashcard-back">
+        Volumen basado en la longitud del lado<br>
+        <span class="formula">\( V = a^3 \)</span><br>
+        donde <em>a</em> es el lado del cubo.
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 19">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Distancia entre dos puntos</div>
+      <div class="flashcard-back">
+        Distancia en el plano cartesiano<br>
+        <span class="formula">\( d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 20">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Media aritmética</div>
+      <div class="flashcard-back">
+        Promedio de números<br>
+        <span class="formula">\( \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i \)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 21">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Interés compuesto</div>
+      <div class="flashcard-back">
+        Dinero acumulado con interés compuesto<br>
+        <span class="formula">\( A = P \left(1 + \frac{r}{n} \right)^{nt} \)</span><br>
+        <em>P</em>: capital, <em>r</em>: tasa anual,<br>
+        <em>n</em>: periodos/año, <em>t</em>: años
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 22">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Probabilidad básica</div>
+      <div class="flashcard-back">
+        Probabilidad de un evento<br>
+        <span class="formula">\( P(A) = \frac{\text{casos favorables}}{\text{total de casos}} \)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 23">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Ecuación de la recta</div>
+      <div class="flashcard-back">
+        Fórmula para graficar una línea<br>
+        <span class="formula">\( y = mx + b \)</span><br>
+        <em>m</em>: pendiente, <em>b</em>: intersección eje y
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 24">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Máximo Común Divisor (MCD)</div>
+      <div class="flashcard-back">
+        Mayor número que divide dos números sin residuo.
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 25">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Mínimo Común Múltiplo (MCM)</div>
+      <div class="flashcard-back">
+        Múltiplo positivo más pequeño común a dos o más números.
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 26">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Área del triángulo</div>
+      <div class="flashcard-back">
+        Área según base y altura<br>
+        <span class="formula">\( A = \frac{b \cdot h}{2} \)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 27">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Suma de serie aritmética</div>
+      <div class="flashcard-back">
+        Suma de términos en secuencia con diferencia constante<br>
+        <span class="formula">\( S_n = \frac{n}{2} (a_1 + a_n) \)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 28">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Varianza</div>
+      <div class="flashcard-back">
+        Medida de dispersión de datos<br>
+        <span class="formula">\( \sigma^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 \)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 29">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Distancia en plano cartesiano</div>
+      <div class="flashcard-back">
+        Distancia entre dos puntos calculada con coordenadas<br>
+        <span class="formula">\( d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 30">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">Perímetro del rectángulo</div>
+      <div class="flashcard-back">
+        Suma de todos sus lados<br>
+        <span class="formula">\( P = 2(b + h) \)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 31">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Es de mango?</div>
+      <div class="flashcard-back">Son ramas de las matemáticas que estudian números, operaciones, estructuras algebraicas y propiedades del espacio.</div>
+    </div>
+  </div>
+
+  <div class="flashcard" tabindex="0" aria-label="Flashcard 32">
+    <div class="flashcard-inner">
+      <div class="flashcard-front">¿Cual es la formula general?</div>
+      <div class="flashcard-back">
+        FORMULA GENERAL<br>
+        <span class="formula">$$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$</span>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  Guía de Estudio • Flashcards de Matemáticas • Diseño interactivo para facilitar el aprendizaje • By LIN
+</footer>
+<script>
+  let lastActiveCard = null;
+
+  document.querySelectorAll('.flashcard').forEach(card => {
+    card.addEventListener('click', () => {
+      if (card === lastActiveCard) {
+        card.classList.remove('active');
+        lastActiveCard = null;
+        return;
+      }
+      if (lastActiveCard) {
+        lastActiveCard.classList.remove('active');
+      }
+      card.classList.add('active');
+      lastActiveCard = card;
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
